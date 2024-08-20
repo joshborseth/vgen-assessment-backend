@@ -2,7 +2,7 @@ import express from "express";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
 import { v4 as uuidv4 } from "uuid";
-import { validateTodo, validateUser } from "../schemas/validators.js";
+import { validateTodo } from "../schemas/validators.js";
 import auth from "../middleware/auth.js";
 import { verifyToken } from "../functions/cookies.js";
 
@@ -23,6 +23,7 @@ export default ({ todoRepository }) => {
         todoID,
         userID: session.userID,
         created,
+        completed: false,
       };
 
       if (validateTodo(newTodo)) {
